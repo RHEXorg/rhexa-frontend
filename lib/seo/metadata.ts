@@ -73,6 +73,8 @@ export function generatePageMetadata(props: SEOMetadataProps): Metadata {
     alternates: {
       canonical: url,
     },
+    // ensure metadataBase is set for social image resolution
+    metadataBase: new URL(url),
   }
 }
 
