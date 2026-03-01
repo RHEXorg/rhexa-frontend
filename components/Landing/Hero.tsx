@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BrainCircuit, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import Link from "next/link";
 import { CosmicPlasma } from "./CosmicPlasma";
 
@@ -22,7 +22,9 @@ const staggerContainer = {
   }
 };
 
-const scaleIn: any = {
+import { Variants } from "framer-motion";
+
+const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { 
     opacity: 1, 

@@ -4,11 +4,9 @@ import React from "react";
 import { 
   Scale, 
   AlertTriangle, 
-  Ban, 
   CreditCard, 
   Copyright,
   ArrowLeft,
-  BookOpen,
   Gavel,
   ShieldAlert
 } from "lucide-react";

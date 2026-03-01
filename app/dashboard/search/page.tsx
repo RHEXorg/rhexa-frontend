@@ -29,9 +29,19 @@ const highlightText = (text: string, highlight: string) => {
   );
 };
 
+interface SearchResult {
+  content: string;
+  score: number;
+  metadata: {
+    filename?: string;
+    source?: string;
+    type?: string;
+  };
+}
+
 export default function SearchPage() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -51,7 +61,7 @@ export default function SearchPage() {
       const words = query.trim().toLowerCase().split(/\s+/).filter(w => w.length > 2);
       const searchTerms = words.length > 0 ? words : [query.trim().toLowerCase()];
       
-      const filteredResults = response.data.filter((result: any) => {
+      const filteredResults = response.data.filter((result: SearchResult) => {
         const contentLower = result.content.toLowerCase();
         return searchTerms.some(term => contentLower.includes(term));
       });

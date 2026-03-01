@@ -6,8 +6,24 @@ import { billingApi } from "@/lib/api";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
+interface BillingInfo {
+  tier: string;
+  usage: {
+    widgets: number;
+    files: number;
+    databases: number;
+  };
+  limits: {
+    widgets: number;
+    files: number;
+    databases: number;
+  };
+  is_expired: boolean;
+  trial_ends_at: string | null;
+}
+
 export default function BillingPage() {
-  const [billingInfo, setBillingInfo] = useState<any>(null);
+  const [billingInfo, setBillingInfo] = useState<BillingInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +69,11 @@ export default function BillingPage() {
     );
   }
 
-  const { tier, usage, limits, is_expired, trial_ends_at } = billingInfo || {};
+  const tier = billingInfo?.tier || 'free_trial';
+  const usage = billingInfo?.usage || { widgets: 0, files: 0, databases: 0 };
+  const limits = billingInfo?.limits || { widgets: 1, files: 1, databases: 0 };
+  const is_expired = billingInfo?.is_expired || false;
+  const trial_ends_at = billingInfo?.trial_ends_at || null;
 
   return (
     <div className="max-w-6xl mx-auto space-y-12">
@@ -217,7 +237,7 @@ export default function BillingPage() {
   );
 }
 
-function XIcon(props: any) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
