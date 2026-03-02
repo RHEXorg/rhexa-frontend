@@ -138,7 +138,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Preconnect to API */}
-        <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"} />
+        <link rel="preconnect" href={process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://127.0.0.1:8000"} />
         
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -200,9 +200,9 @@ export default function RootLayout({
 
         {/* RheXa Widget Script - Production Ready */}
         <Script 
-          src={`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/static/widget.js`}
+          src={`${process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://127.0.0.1:8000"}/static/widget.js`}
           data-widget-key={process.env.NEXT_PUBLIC_WIDGET_KEY || "dc49aead-97bd-4293-bb0c-f3b26b53387d"}
-          data-api-url={process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}
+          data-api-url={process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://127.0.0.1:8000"}
           async
           strategy="lazyOnload"
         />

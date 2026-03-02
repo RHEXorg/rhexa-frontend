@@ -210,7 +210,7 @@ export default function LibraryPage() {
                 </div>
                 <div className="flex gap-2">
                   <button 
-                    onClick={() => window.open(`${process.env.NEXT_PUBLIC_API_URL}/api/documents/${doc.id}`, '_blank')}
+                    onClick={() => window.open(`${process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "")}/api/documents/${doc.id}`, '_blank')}
                     className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all"
                   >
                     <ExternalLink className="w-4 h-4" />
